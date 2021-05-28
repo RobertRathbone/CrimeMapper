@@ -88,7 +88,7 @@ const CreateCrimeNamesArray = (response) => {
 }
 
   const AllCrimeData = () => { //creates array containing all crime names
-    axios.get("https://data.sfgov.org/resource/wg3w-h783.json?incident_year=2018")
+    axios.get("https://data.sfgov.org/resource/wg3w-h783.json?")
   .then(response => { 
     CreateCrimeNamesArray(response);
     console.log(allCrimeNames);
@@ -104,13 +104,15 @@ const CreateCrimeNamesArray = (response) => {
     axios.get(` https://data.sfgov.org/resource/wg3w-h783.json?incident_category=${crimeSearch}&$limit=10`)
     .then(res => {
   
-      setCrime(res.data); 
-      processCrime(res.data);
-      console.log("this is res.data " + res.data[0].incident_datetime);
-      console.log("this is crimeSearch " + crimeSearch)
-      // console.log(res.data[0].incident_category);
-      // console.log("******************")
-      // console.log('in the specific crime function',crime);
+      if(res.data.length === 0){
+        console.log("unable to locate")
+        setErrorMessage("Unable to locate.")
+      }
+      else{
+        setErrorMessage("")
+        setCrime(res.data); 
+        processCrime(res.data);
+      }
       
     })
     // console.log(res)
@@ -140,7 +142,13 @@ const CreateCrimeNamesArray = (response) => {
       console.log("incident: " + incident.point)
       var lat = incident.latitude;
       var lng = incident.longitude;
-      // console.log(lat)
+      // if (lat>37 | lat<39.5){
+      //   lat = 37.74636
+      // }
+      // if (lng<-122 | lng > -121){
+      //   lng = -122.391056
+      // }
+      // // console.log(lat)
       // console.log(lng);
       console.log('this is copy' + copy);
       var titleV = incident.incident_description;
@@ -246,7 +254,7 @@ const CreateCrimeNamesArray = (response) => {
               ))}
               </Select>
               <Button
-              variant='contained'
+              variant='outline-dark'
               color='primary'
               type='submit'>
               Submit
