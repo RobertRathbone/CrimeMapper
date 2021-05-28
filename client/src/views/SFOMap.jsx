@@ -80,9 +80,15 @@ const CreateCrimeNamesArray = (response) => {
       for(var i = 0; i < 1000; i++){
         if(allCrimeNames.includes(response.data[i].incident_category) ){
         }
+
+        else if(response.data[i].incident_category == "Lost Property" | response.data[i].incident_category == "Fraud" | response.data[i].incident_category == "Other Offenses"){
+
+        }
+
         else{
           setAllCrimeNames(allCrimeNames.push(response.data[i].incident_category));
         }
+        
       setMenuCrimes(Object.values(allCrimeNames))
       }
 }
@@ -240,7 +246,7 @@ const CreateCrimeNamesArray = (response) => {
 
         <form onSubmit={SpecificCrime} >
           <FormControl variant='filled'> 
-            <InputLabel id="label">Crime Type</InputLabel>
+            <InputLabel id="label">Crime</InputLabel>
             <Select labelId="label" id="select" 
             value={crimeSearch}
             onChange={(e) => setCrimeSearch(e.target.value)}>
