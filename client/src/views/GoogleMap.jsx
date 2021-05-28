@@ -39,18 +39,12 @@ const GoogleMap = ({ placeName }) => {
   const [ menuCrimes, setMenuCrimes] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const createGoogleMap = (coordinates) => {
-    // for (const i=0; i<crime.length; i++){
-    //   let lat = 0;
-    //   let lng = 0;
-      // lat = crime[i].location.latitude;
-      // lng = crime[i].location.longitude;
       googleMap = new window.google.maps.Map(googleMapRef.current, {
         zoom: 13,
         center: {
           lat: coordinates.lat(),
           lng: coordinates.lng(),
         },
-      //disableDefaultUI: true,
     });
   };
 
@@ -228,7 +222,7 @@ const CreateCrimeNamesArray = (response) => {
         </Link>
         <form onSubmit={SpecificCrime} >
           <FormControl variant='filled'> 
-            <InputLabel id="label">Crime Type</InputLabel>
+            <InputLabel id="label">Crime</InputLabel>
             <Select labelId="label" id="select" 
             value={crimeSearch}
             onChange={(e) => setCrimeSearch(e.target.value)}>

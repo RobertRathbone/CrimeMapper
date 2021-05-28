@@ -223,7 +223,7 @@ const CreateCrimeNamesArray = (response) => {
 
       <form onSubmit={SpecificCrime} >
           <FormControl variant='filled'> 
-            <InputLabel id="label">Crime Type</InputLabel>
+            <InputLabel id="label">Crime</InputLabel>
             <Select labelId="label" id="select" 
             value={crimeSearch}
             onChange={(e) => setCrimeSearch(e.target.value)}>
